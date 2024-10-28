@@ -1,15 +1,16 @@
 import React from "react";
-import ReactDOM from "react-dom";
+import { createRoot } from "react-dom/client";
+import "./index.css";
 
 function App() {
-  const [state, setState] = React.useState(0);
-
-  return (
-    <div>
-      <h1>Hello, Cordova com React e Vite! {state}</h1>
-      <button onClick={() => setState(state + 1)}>Increment</button>
-    </div>
-  );
+  return <></>;
 }
 
-ReactDOM.render(<App />, document.getElementById("app"));
+const container = document.getElementById("app");
+const root = createRoot(container!);
+
+root.render(
+  <React.StrictMode>
+    <App />
+  </React.StrictMode>
+);
