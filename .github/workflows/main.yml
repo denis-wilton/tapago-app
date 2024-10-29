@@ -1,0 +1,43 @@
+name: Docker Image CI
+
+on:
+  push:
+    branches: ["main"]
+  pull_request:
+    branches: ["main"]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Docker environment
+        run: |
+          docker pull hamdifourati/cordova-android-builder:android-34
+
+      - name: Add Android platform
+        run: |
+          docker run --rm -v ${{ github.workspace }}:/usr/src/app \
+          -v ~/.gradle:/root/.gradle \
+          -w /usr/src/app \
+          hamdifourati/cordova-android-builder:android-34 \
+          cordova platform add android  # Adiciona a plataforma Android
+
+      - name: Build the APK
+        run: |
+          docker run --rm -v ${{ github.workspace }}:/usr/src/app \
+          -v ~/.gradle:/root/.gradle \
+          -w /usr/src/app \
+          hamdifourati/cordova-android-builder:android-34 \
+          cordova build android  # Gera o APK
+
+      # Upload APK como artefato
+      - name: Upload APK
+        uses: actions/upload-artifact@v3
+        with:
+          name: apk-release
+          path: |
+            ${{ github.workspace }}/platforms/android/app/build/outputs/apk/debug/*.apk
