@@ -7,7 +7,7 @@ export default function Home() {
 
   return (
     <>
-      <div className="flex items-start justify-between p-8 bg-primary text-primary">
+      <div className="flex items-center justify-between p-5 pb-5 bg-primary text-primary">
         <h1 className="font-bold leading-none">tapago</h1>
         <div className="flex flex-col gap-2 text-right">
           <span className="font-bold leading-none">{user?.username} </span>
@@ -18,29 +18,30 @@ export default function Home() {
       </div>
       <div className="flex items-center justify-between p-4 pt-0 bg-primary text-primary">
         <input
-          placeholder="Buscar cliente"
-          className="w-full p-2 bg-white/10 text-primary rounded-lg placeholder-white/60"
+          placeholder="buscar cliente"
+          className="w-full p-2 bg-white/10 text-primary rounded-lg placeholder-white/60 text-xs px-3"
           type="text"
         />
       </div>
       <div className="flex items-center justify-between p-4 pt-0 bg-primary text-primary">
         <div className="bg-secondary text-secondary rounded-lg p-5 w-full grid grid-cols-2 items-center">
-          <div className="h-full grid items-center">
-            <div className="text-[0.6rem] font-semibold text-[#0E66D8]">
+          <div className="h-full grid items-center relative">
+            <div className="text-[0.7rem] leading-none font-semibold text-[#0E66D8]">
               resumo do cliente
             </div>
-            <div className="font-bold text-lg">Irapuan Noce</div>
+            <div className="font-bold text-lg">Alemão Imports</div>
             <div className="text-xs text-[#aaa]">065.342.901-03</div>
           </div>
-          <div className="h-full grid items-center justify-end text-right">
-            <div className="text-[#0E66D8]">
-              disponível <strong>R$ 9.000,22</strong>
+          <div className="h-full grid content-between justify-end text-right">
+            <div className="text-[#0E66D8] leading-none text-[0.75rem]">
+              disponível <strong>R$ 184,29</strong>
             </div>
-            <div className="text-[0.7rem] leading-none text-[#aaa]">
-              bruto vencido <strong>R$ 11.541,95</strong>
+            <div className="h-1"></div>
+            <div className="text-[0.67rem] leading-none text-secondary/70">
+              bruto vendido <strong>R$ 18.220,56</strong>
             </div>
-            <div className="text-[0.7rem] leading-none text-[#aaa]">
-              taxa atual <strong>3%</strong>
+            <div className="text-[0.67rem] leading-none text-secondary/70">
+              taxa recolhida <strong>R$ 546,61 (3%)</strong>
             </div>
           </div>
         </div>
@@ -49,21 +50,101 @@ export default function Home() {
         <div className="bg-primary text-primary h-20 w-full -mb-20"></div>
         <div className="p-5 pt-0">
           <div className="font-bold pb-2 text-primary">vendas realizadas</div>
-          <div className="bg-secondary rounded-lg p-5 w-full flex flex-col gap-2">
-            <div className="grid grid-cols-[auto,1fr,auto] items-center gap-2">
+          <div className="bg-secondary rounded-lg p-5 w-full flex flex-col gap-10 overflow-auto h-[350px]">
+            <div className="grid grid-cols-[44px,minmax(0px,150px),auto] items-center gap-2">
               <div className="bg-gray-300 p-3 rounded-full">
                 <img src={Bag} alt="Bag" />
               </div>
               <div>
+                <div className="font-bold text-sm text-secondary text-ellipsis w-full whitespace-nowrap overflow-hidden">
+                  Smartband Mi Band 6
+                </div>
+                <div className="font-regular text-sm text-[#777]">18:01</div>
+              </div>
+              <div className="text-right flex flex-col gap-2">
                 <div className="font-bold text-sm text-secondary">
-                  Smartband XYZ 3.0
+                  R$ 350,15
+                </div>
+                <div className="font-regular text-[#0E66D8] text-xs">
+                  disponível em 29d
+                </div>
+              </div>
+            </div>
+
+            <div className="grid grid-cols-[44px,minmax(0px,150px),auto] items-center gap-2">
+              <div className="bg-gray-300 p-3 rounded-full">
+                <img src={Bag} alt="Bag" />
+              </div>
+              <div>
+                <div className="font-bold text-sm text-secondary text-ellipsis w-full whitespace-nowrap overflow-hidden">
+                  Apple iPhone 15
+                </div>
+                <div className="font-regular text-sm text-[#777]">17:21</div>
+              </div>
+              <div className="text-right flex flex-col gap-2">
+                <div className="font-bold text-sm text-secondary">
+                  R$ 9.130,20
+                </div>
+                <div className="font-regular text-[#0E66D8] text-xs">
+                  disponível em 25d
+                </div>
+              </div>
+            </div>
+
+            <div className="grid grid-cols-[44px,minmax(0px,150px),auto] items-center gap-2">
+              <div className="bg-gray-300 p-3 rounded-full">
+                <img src={Bag} alt="Bag" />
+              </div>
+              <div>
+                <div className="font-bold text-sm text-secondary text-ellipsis w-full whitespace-nowrap overflow-hidden">
+                  Apple iPhone 13 Pro Max
+                </div>
+                <div className="font-regular text-sm text-[#777]">14:45</div>
+              </div>
+              <div className="text-right flex flex-col gap-2">
+                <div className="font-bold text-sm text-secondary whitespace-nowrap">
+                  R$ 8.550,22
+                </div>
+                <div className="font-regular text-[#0E66D8] text-xs">
+                  disponível em 14d
+                </div>
+              </div>
+            </div>
+
+            <div className="grid grid-cols-[44px,minmax(0px,150px),auto] items-center gap-2">
+              <div className="bg-gray-300 p-3 rounded-full">
+                <img src={Bag} alt="Bag" />
+              </div>
+              <div>
+                <div className="font-bold text-sm text-secondary text-ellipsis w-full whitespace-nowrap overflow-hidden">
+                  Película de Vidro
                 </div>
                 <div className="font-regular text-sm text-[#777]">14:37</div>
               </div>
               <div className="text-right flex flex-col gap-2">
-                <div className="font-bold text-sm text-secondary">R$ 50,75</div>
-                <div className="font-regular text-[#0E66D8] text-xs">
-                  disponível em 14d
+                <div className="font-bold text-sm text-secondary">R$ 39,99</div>
+                <div className="font-regular bg-green-600 text-white text-center rounded-md flex items-center justify-center leading-none py-0.5 px-2 text-xs">
+                  saque disponível
+                </div>
+              </div>
+            </div>
+
+            <div className="grid grid-cols-[44px,minmax(0px,150px),auto] items-center gap-2">
+              <div className="bg-gray-300 p-3 rounded-full">
+                <img src={Bag} alt="Bag" />
+              </div>
+              <div>
+                <div className="font-bold text-sm text-secondary text-ellipsis w-full whitespace-nowrap overflow-hidden">
+                  Sinal PIX 150
+                </div>
+                <div className="font-regular text-sm text-[#777]">11:14</div>
+              </div>
+              <div className="text-right flex flex-col gap-2">
+                <div className="font-bold text-sm text-secondary">
+                  R$ 150,00
+                </div>
+                <div className="font-regular bg-green-600 text-white text-center rounded-md flex items-center justify-center leading-none py-0.5 px-2 text-xs">
+                  saque disponível
                 </div>
               </div>
             </div>
