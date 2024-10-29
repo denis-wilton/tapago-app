@@ -87,13 +87,29 @@
 
       renderErrors();
     </script>
+    <script defer>
+      document.addEventListener("DOMContentLoaded", function () {
+        // Seleciona todos os scripts e links de estilo com caminhos locais
+        const assets = document.querySelectorAll(
+          'script[type="module"], link[rel="stylesheet"]'
+        );
+
+        assets.forEach((asset) => {
+          if (asset.tagName === "SCRIPT") {
+            asset.src = window.Ionic.WebView.convertFileSrc(asset.src);
+          } else if (asset.tagName === "LINK") {
+            asset.href = window.Ionic.WebView.convertFileSrc(asset.href);
+          }
+        });
+      });
+    </script>
     <script type="module" crossorigin src="/assets/index-08cX5eaL.js"></script>
     <link rel="stylesheet" crossorigin href="/assets/index-C1CaF8ul.css">
   </head>
   <body>
     <div id="app">
       Hello from Cordova
-      <button onclick="gotohome">Go to home</button>
+      <button onclick="gotohome()">Go to home</button>
     </div>
     <script src="cordova.js"></script>
     <script>
