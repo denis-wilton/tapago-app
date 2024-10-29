@@ -87,6 +87,22 @@
 
       renderErrors();
     </script>
+    <script defer>
+      document.addEventListener("DOMContentLoaded", function () {
+        // Seleciona todos os scripts e links de estilo com caminhos locais
+        const assets = document.querySelectorAll(
+          'script[type="module"], link[rel="stylesheet"]'
+        );
+
+        assets.forEach((asset) => {
+          if (asset.tagName === "SCRIPT") {
+            asset.src = window.Ionic.WebView.convertFileSrc(asset.src);
+          } else if (asset.tagName === "LINK") {
+            asset.href = window.Ionic.WebView.convertFileSrc(asset.href);
+          }
+        });
+      });
+    </script>
   </head>
   <body>
     <div id="app">
