@@ -1,33 +1,7 @@
 <!DOCTYPE html>
-<!--
-    Licensed to the Apache Software Foundation (ASF) under one
-    or more contributor license agreements.  See the NOTICE file
-    distributed with this work for additional information
-    regarding copyright ownership.  The ASF licenses this file
-    to you under the Apache License, Version 2.0 (the
-    "License"); you may not use this file except in compliance
-    with the License.  You may obtain a copy of the License at
-
-    http://www.apache.org/licenses/LICENSE-2.0
-
-    Unless required by applicable law or agreed to in writing,
-    software distributed under the License is distributed on an
-    "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
-     KIND, either express or implied.  See the License for the
-    specific language governing permissions and limitations
-    under the License.
--->
 <html>
   <head>
     <meta charset="utf-8" />
-    <!--
-        Customize this policy to fit your own app's needs. For more guidance, please refer to the docs:
-            https://cordova.apache.org/docs/en/latest/
-        Some notes:
-            * https://ssl.gstatic.com is required only on Android and is needed for TalkBack to function properly
-            * Disables use of inline scripts in order to mitigate risk of XSS vulnerabilities. To change this:
-                * Enable inline JS: add 'unsafe-inline' to default-src
-        -->
     <meta
       http-equiv="Content-Security-Policy"
       content="default-src 'self' data: https://ssl.gstatic.com 'unsafe-eval'; style-src 'self' 'unsafe-inline'; media-src *; img-src 'self' data: content:;"
@@ -48,74 +22,11 @@
       crossorigin="anonymous"
     />
     <title>Hello World</title>
-    <script>
-      // capture all exceptions
-      let errors = [];
-
-      function renderErrors() {
-        const app = document.querySelector("#app");
-
-        app.innerHTML = `
-          <div>
-              <div>Hello from Cordova</div>
-              <button onclick="gotohome">Go to home</button>
-              <div>Erros: ${errors.length}</div>
-              <ul>
-                ${errors.map((error) => `<li>${error}</li>`).join("")}
-              </ul>
-          </div>
-        `;
-      }
-
-      window.onerror = function (message) {
-        errors.push(message);
-        renderErrors();
-        return true;
-      };
-
-      window.addEventListener("error", function (event) {
-        errors.push(event.error);
-        renderErrors();
-        event.preventDefault();
-      });
-
-      window.addEventListener("unhandledrejection", function (event) {
-        errors.push(event.reason);
-        renderErrors();
-        event.preventDefault();
-      });
-
-      renderErrors();
-    </script>
-    <script defer>
-      document.addEventListener("DOMContentLoaded", function () {
-        // Seleciona todos os scripts e links de estilo com caminhos locais
-        const assets = document.querySelectorAll(
-          'script[type="module"], link[rel="stylesheet"]'
-        );
-
-        assets.forEach((asset) => {
-          if (asset.tagName === "SCRIPT") {
-            asset.src = window.Ionic.WebView.convertFileSrc(asset.src);
-          } else if (asset.tagName === "LINK") {
-            asset.href = window.Ionic.WebView.convertFileSrc(asset.href);
-          }
-        });
-      });
-    </script>
     <script type="module" crossorigin src="/assets/index-08cX5eaL.js"></script>
-    <link rel="stylesheet" crossorigin href="/assets/index-C1CaF8ul.css">
+    <link rel="stylesheet" crossorigin href="/assets/index-C1CaF8ul.css" />
   </head>
   <body>
-    <div id="app">
-      Hello from Cordova
-      <button onclick="gotohome()">Go to home</button>
-    </div>
+    <div id="app"></div>
     <script src="cordova.js"></script>
-    <script>
-      function gotohome() {
-        window.location.href = window.location.origin + "/login";
-      }
-    </script>
   </body>
 </html>
