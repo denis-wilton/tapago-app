@@ -48,6 +48,45 @@
       crossorigin="anonymous"
     />
     <title>Hello World</title>
+    <script>
+      // capture all exceptions
+      let errors = [];
+
+      function renderErrors() {
+        const app = document.querySelector("#app");
+
+        app.innerHTML = `
+          <div>
+              <div>Hello from Cordova</div>
+              <button onclick="gotohome">Go to home</button>
+              <div>Erros: ${errors.length}</div>
+              <ul>
+                ${errors.map((error) => `<li>${error}</li>`).join("")}
+              </ul>
+          </div>
+        `;
+      }
+
+      window.onerror = function (message) {
+        errors.push(message);
+        renderErrors();
+        return true;
+      };
+
+      window.addEventListener("error", function (event) {
+        errors.push(event.error);
+        renderErrors();
+        event.preventDefault();
+      });
+
+      window.addEventListener("unhandledrejection", function (event) {
+        errors.push(event.reason);
+        renderErrors();
+        event.preventDefault();
+      });
+
+      renderErrors();
+    </script>
   </head>
   <body>
     <div id="app">
