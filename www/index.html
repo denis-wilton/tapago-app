@@ -48,11 +48,19 @@
       crossorigin="anonymous"
     />
     <title>Hello World</title>
-    <script type="module" crossorigin src="/assets/index-mwlOE3PS.js"></script>
+    <script type="module" crossorigin src="/assets/index-08cX5eaL.js"></script>
     <link rel="stylesheet" crossorigin href="/assets/index-C1CaF8ul.css">
   </head>
   <body>
-    <div id="app"></div>
+    <div id="app">
+      Hello from Cordova
+      <button onclick="gotohome">Go to home</button>
+    </div>
     <script src="cordova.js"></script>
+    <script>
+      function gotohome() {
+        window.location.href = window.location.origin + "/login";
+      }
+    </script>
   </body>
 </html>
