@@ -55,11 +55,13 @@ export default function Home() {
                 <img src={Bag} alt="Bag" />
               </div>
               <div>
-                <div className="font-bold text-sm">Smartband XYZ 3.0</div>
+                <div className="font-bold text-sm text-secondary">
+                  Smartband XYZ 3.0
+                </div>
                 <div className="font-regular text-sm text-[#777]">14:37</div>
               </div>
               <div className="text-right flex flex-col gap-2">
-                <div className="font-bold text-sm">R$ 50,75</div>
+                <div className="font-bold text-sm text-secondary">R$ 50,75</div>
                 <div className="font-regular text-[#0E66D8] text-xs">
                   disponível em 14d
                 </div>
