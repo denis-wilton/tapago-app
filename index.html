@@ -50,8 +50,16 @@
     <title>Hello World</title>
   </head>
   <body>
-    <div id="app"></div>
+    <div id="app">
+      Hello from Cordova
+      <button onclick="gotohome">Go to home</button>
+    </div>
     <script src="cordova.js"></script>
     <script type="module" src="/src/main.tsx"></script>
+    <script>
+      function gotohome() {
+        window.location.href = window.location.origin + "/login";
+      }
+    </script>
   </body>
 </html>
