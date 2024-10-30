@@ -31,8 +31,8 @@ jobs:
           docker run --rm -v ${{ github.workspace }}:/usr/src/app \
           -v ~/.gradle:/root/.gradle \
           -w /usr/src/app \
-          npx vite build && hamdifourati/cordova-android-builder:android-34 \
-          cordova build android  # Gera o APK
+          hamdifourati/cordova-android-builder:android-34 \
+          npx vite build && cordova build android  # Gera o APK
 
       # Upload APK como artefato
       - name: Upload APK
