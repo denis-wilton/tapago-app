@@ -206,6 +206,7 @@ const FinancialSummary = ({
     </div>
   </div>
 );
+
 const TransactionList = ({
   isLoadingTransactions,
   customerTransactions,
@@ -257,19 +258,19 @@ const TransactionList = ({
     []
   );
 
-  const handleConfirm = useCallback(() => {
+  const handleConfirm = useCallback(async () => {
     if (confirmationAction) {
       const { action, transactionId } = confirmationAction;
 
       switch (action) {
         case "Bloquear transação":
-          blockTransaction(transactionId);
+          await blockTransaction(transactionId);
           break;
         case "Adiantar pagamento":
-          antecipateTransaction(transactionId);
+          await antecipateTransaction(transactionId);
           break;
         case "Redefinir transação":
-          resetTransaction(transactionId);
+          await resetTransaction(transactionId);
           break;
         default:
           console.log(`Unknown action: ${action}`);
