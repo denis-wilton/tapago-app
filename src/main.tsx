@@ -11,25 +11,31 @@ import Home from "./pages/home/Home";
 import Login from "./pages/login/Login";
 import { AuthProvider } from "./context/Auth.context";
 import ProtectedRoute from "./components/ProtectedRoute/ProtectedRoute";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import { CustomersProvider } from "./context/Customers.context";
 
 function RedirectToLogin() {
   return <Navigate to="/login" />;
 }
 
+const queryClient = new QueryClient();
+
 function App() {
   return (
-    <AuthProvider>
-      <Router>
-        <Routes>
-          <Route path="/index.html" element={<RedirectToLogin />} />
-          <Route path="/" element={<ProtectedRoute />}>
-            <Route index element={<Home />} />
-            <Route path="cliente" element={<>Oi, eu sou a rota Cliente</>} />
-          </Route>
-          <Route path="/login" element={<Login />} />
-        </Routes>
-      </Router>
-    </AuthProvider>
+    <QueryClientProvider client={queryClient}>
+      <AuthProvider>
+        <Router>
+          <Routes>
+            <Route path="/index.html" element={<RedirectToLogin />} />
+            <Route path="/" element={<ProtectedRoute />}>
+              <Route index element={<Home />} />
+              <Route path="cliente" element={<>Oi, eu sou a rota Cliente</>} />
+            </Route>
+            <Route path="/login" element={<Login />} />
+          </Routes>
+        </Router>
+      </AuthProvider>
+    </QueryClientProvider>
   );
 }
 

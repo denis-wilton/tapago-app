@@ -1,9 +1,19 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useAuth } from "../../context/Auth.context";
 import Bag from "../../assets/bag.svg";
+import { useCustomers } from "../../context/Customers.context";
+import { useState } from "react";
 
 export default function Home() {
+  const { customers, isLoading } = useCustomers();
   const { user } = useAuth();
+  const [currentCustomer, setCurrentCustomer] = useState(null as any);
+
+  useEffect(() => {
+    if (!currentCustomer && customers && customers.length > 0) {
+      setCurrentCustomer(customers[0]);
+    }
+  }, [customers, currentCustomer]);
 
   return (
     <>
@@ -11,7 +21,7 @@ export default function Home() {
         <div className="flex items-center justify-between p-5 pb-5 bg-primary text-primary">
           <h1 className="font-bold leading-none">tapago</h1>
           <div className="flex flex-col gap-2 text-right">
-            <span className="font-bold leading-none">{user?.username} </span>
+            <span className="font-bold leading-none">{user?.username}</span>
             <span className="font-light text-xs leading-none">
               gerente financeiro
             </span>
@@ -30,7 +40,11 @@ export default function Home() {
               <div className="text-[0.7rem] leading-none font-semibold text-[#0E66D8]">
                 resumo do cliente
               </div>
-              <div className="font-bold text-lg">Alemão Imports</div>
+              <div className="font-bold text-lg text-ellipsis overflow-hidden whitespace-nowrap">
+                {currentCustomer?.name ?? (
+                  <div className="animate-pulse">Carregando</div>
+                )}
+              </div>
               <div className="text-xs text-[#aaa]">065.342.901-03</div>
             </div>
             <div className="h-full grid content-between justify-end text-right">
