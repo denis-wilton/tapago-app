@@ -1,11 +1,28 @@
 <?xml version='1.0' encoding='utf-8'?>
-<widget id="com.tapago.ufmt" version="1.0.0" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
+<widget id="com.tapago.ufmt" version="1.0.0" xmlns="http://www.w3.org/ns/widgets"
+    xmlns:cdv="http://cordova.apache.org/ns/1.0"
+    xmlns:android="http://schemas.android.com/apk/res/android">
     <name>tapago</name>
-    <description>Sample Apache Cordova App</description>
-    <author email="dev@cordova.apache.org" href="https://cordova.apache.org">
-        Apache Cordova Team
+    <description>Aplicacao para Trabalho Final UFMT - TEES</description>
+    <author email="deniswiltonpa@gmail.com" href="https://deniswilton.com">
+        Denis Wilton de Paula Azevedo
     </author>
     <content src="index.html" />
+
+    <!-- Permissões para HTTP e HTTPS -->
     <allow-intent href="http://*/*" />
     <allow-intent href="https://*/*" />
+
+    <preference name="MixedContentMode" value="2" />
+
+    <platform name="android">
+        <preference name="Scheme" value="http" />
+    </platform>
+    <platform name="android">
+        <edit-config file="app/src/main/AndroidManifest.xml" mode="merge"
+            target="/manifest/application">
+            <application android:usesCleartextTraffic="true" />
+        </edit-config>
+    </platform>
+
 </widget>

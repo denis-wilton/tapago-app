@@ -7,13 +7,10 @@ import { useState } from "react";
 export default function Home() {
   const { customers, isLoading } = useCustomers();
   const { user } = useAuth();
-  const [currentCustomer, setCurrentCustomer] = useState(null as any);
 
   useEffect(() => {
-    if (!currentCustomer && customers && customers.length > 0) {
-      setCurrentCustomer(customers[0]);
-    }
-  }, [customers, currentCustomer]);
+    console.log("customers from home", customers);
+  }, [customers]);
 
   return (
     <>
@@ -38,10 +35,12 @@ export default function Home() {
           <div className="bg-secondary text-secondary rounded-lg p-5 w-full grid grid-cols-2 items-center">
             <div className="h-full grid items-center relative">
               <div className="text-[0.7rem] leading-none font-semibold text-[#0E66D8]">
-                resumo do cliente
+                {window.location.href}
               </div>
               <div className="font-bold text-lg text-ellipsis overflow-hidden whitespace-nowrap">
-                {currentCustomer?.name ?? (
+                {customers && customers[0] && customers[0].name ? (
+                  customers[0].name
+                ) : (
                   <div className="animate-pulse">Carregando</div>
                 )}
               </div>

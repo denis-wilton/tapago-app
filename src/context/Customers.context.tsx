@@ -1,5 +1,5 @@
 import { useQuery } from "@tanstack/react-query";
-import React, { createContext, useCallback, useState } from "react";
+import React, { createContext, useCallback, useEffect, useState } from "react";
 
 const fetchCustomers = async () => {
   return await fetch("http://3.223.4.249/customers/").then(
@@ -17,6 +17,10 @@ function useCustomersContext() {
     isLoading,
     error,
   } = useQuery({ queryKey: ["customers"], queryFn: fetchCustomers });
+
+  useEffect(() => {
+    console.log("customers", customers);
+  }, [customers]);
 
   return { customers, isLoading, error };
 }
