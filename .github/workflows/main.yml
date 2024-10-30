@@ -1,5 +1,4 @@
 name: Docker Image CI
-
 on:
   push:
     branches: ["main"]
@@ -26,13 +25,17 @@ jobs:
           hamdifourati/cordova-android-builder:android-34 \
           cordova platform add android  # Adiciona a plataforma Android
 
+      - name: Build Vite project
+        run: |
+          npx vite build
+
       - name: Build the APK
         run: |
           docker run --rm -v ${{ github.workspace }}:/usr/src/app \
           -v ~/.gradle:/root/.gradle \
           -w /usr/src/app \
           hamdifourati/cordova-android-builder:android-34 \
-          npx vite build && cordova build android  # Gera o APK
+          cordova build android  # Gera o APK
 
       # Upload APK como artefato
       - name: Upload APK
