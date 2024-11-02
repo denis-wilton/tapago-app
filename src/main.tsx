@@ -29,7 +29,10 @@ function App() {
             <Route path="/index.html" element={<RedirectToLogin />} />
             <Route path="/" element={<ProtectedRoute />}>
               <Route index element={<Home />} />
-              <Route path="cliente" element={<>Oi, eu sou a rota Cliente</>} />
+              <Route
+                path="/cliente"
+                element={<>Oi, eu sou exemplo de uma rota Cliente</>}
+              />
             </Route>
             <Route path="/login" element={<Login />} />
           </Routes>

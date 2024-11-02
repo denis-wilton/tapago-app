@@ -12,7 +12,7 @@ import Options from "../../assets/options.svg";
 
 export default function Home() {
   const { user } = useAuth();
-  const { customers, isLoading: isLoadingCustomers } = useCustomers();
+  const { customers } = useCustomers();
   const {
     transactions,
     isLoading: isLoadingTransactions,
@@ -40,7 +40,7 @@ export default function Home() {
   );
 
   const totalAvailable = useMemo(
-    () => calculateTotal(customerTransactions, "available"),
+    () => calculateTotal(customerTransactions, "available") * 0.97,
     [customerTransactions]
   );
 
@@ -349,7 +349,7 @@ const TransactionItem = ({
     <div
       className={`relative transition-filter duration-75 ${
         isBlurred ? "filter blur-[2px] opacity-50" : ""
-      }`}
+      } text-black`}
     >
       <div onClick={onOptionsClick}>
         {showOptions && (
@@ -415,7 +415,7 @@ const ConfirmationModal = ({
       onClick={handleClickOutside}
     >
       <div
-        className="bg-white p-6 rounded-lg shadow-lg mx-2"
+        className="bg-white p-6 rounded-lg shadow-lg mx-2 text-black"
         onClick={(e) => e.stopPropagation()}
       >
         <h2 className="text-lg font-bold mb-4">Confirmação</h2>
