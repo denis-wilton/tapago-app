@@ -35,7 +35,9 @@ export default function Login() {
 
   useEffect(() => {
     if (isAuthenticated) {
-      navigate("/");
+      const params = new URLSearchParams(window.location.search);
+      const redirect = params.get("redirect") || "/";
+      navigate(redirect);
     }
   }, [isAuthenticated, navigate]);
 

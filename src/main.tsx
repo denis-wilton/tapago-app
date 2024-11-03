@@ -13,6 +13,7 @@ import { AuthProvider } from "./context/Auth.context";
 import ProtectedRoute from "./components/ProtectedRoute/ProtectedRoute";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { CustomersProvider } from "./context/Customers.context";
+import Customer from "./pages/customer/Customer";
 
 function RedirectToLogin() {
   return <Navigate to="/login" />;
@@ -29,10 +30,7 @@ function App() {
             <Route path="/index.html" element={<RedirectToLogin />} />
             <Route path="/" element={<ProtectedRoute />}>
               <Route index element={<Home />} />
-              <Route
-                path="/cliente"
-                element={<>Oi, eu sou exemplo de uma rota Cliente</>}
-              />
+              <Route path="/cliente" element={<Customer />} />
             </Route>
             <Route path="/login" element={<Login />} />
           </Routes>
