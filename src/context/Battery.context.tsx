@@ -22,13 +22,18 @@ function useBatteryContext() {
       updateBatteryStatus(status);
     };
 
-    window.addEventListener(
-      "batterystatus",
-      onBatteryStatus as unknown as EventListener,
-      false
-    );
+    const onDeviceReady = () => {
+      window.addEventListener(
+        "batterystatus",
+        onBatteryStatus as unknown as EventListener,
+        false
+      );
+    };
+
+    document.addEventListener("deviceready", onDeviceReady, false);
 
     return () => {
+      document.removeEventListener("deviceready", onDeviceReady, false);
       window.removeEventListener(
         "batterystatus",
         onBatteryStatus as unknown as EventListener,

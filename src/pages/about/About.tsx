@@ -18,7 +18,7 @@ export default function Home() {
       <Navbar />
       <div className="flex-1 overflow-y-auto">
         <div className="p-5">
-          <h2 className="font-bold text-xl pb-2">sobre a tapago</h2>
+          <h2 className="font-bold text-xl pb-2 text-black">sobre a tapago</h2>
           <p className="text-sm text-gray-500 py-2">
             a tapago é uma empresa fictícia de processamento de transações.
           </p>

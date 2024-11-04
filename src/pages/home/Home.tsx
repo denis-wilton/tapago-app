@@ -131,7 +131,7 @@ export default function Home() {
             >
               <div className="card-header flex items-center justify-between">
                 <h2
-                  className="text-lg font-bold"
+                  className="text-lg font-bold text-black"
                   dangerouslySetInnerHTML={{ __html: customer.name }}
                 />
               </div>
