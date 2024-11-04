@@ -5,6 +5,8 @@ import {
   Customer as CustomerEntity,
   useCustomers,
 } from "../../context/Customers.context";
+import Navbar from "../../components/Navbar/Navbar";
+import { useBattery } from "../../context/Battery.context";
 
 export default function Home() {
   const { user } = useAuth();
@@ -95,10 +97,11 @@ export default function Home() {
   return (
     <div className="h-full flex flex-col overflow-hidden">
       <Header user={user} />
+      <Navbar />
       <div className="p-5 flex justify-between items-center">
         <input
           type="text"
-          placeholder="Filtrar"
+          placeholder="filtrar"
           className="w-full p-2 border border-gray-300 rounded-lg"
           value={searchTerm}
           onChange={(e) => setSearchTerm(e.target.value)}
@@ -172,17 +175,28 @@ export default function Home() {
   );
 }
 
-const Header = ({ user }: { user: null | { username: string } }) => (
-  <div className="flex items-center justify-between p-5 pb-5 bg-primary text-primary">
-    <h1 className="font-bold leading-none">tapago</h1>
-    <div className="flex flex-col gap-2 text-right">
-      <span className="font-bold leading-none">{user?.username}</span>
-      <span className="font-light text-xs leading-none">
-        gerente financeiro
-      </span>
+const Header = ({ user }: { user: null | { username: string } }) => {
+  const navigate = useNavigate();
+  const { batteryStatus } = useBattery();
+
+  return (
+    <div className="flex items-center justify-between p-5 pb-5 bg-primary text-primary">
+      <h1 className="font-bold leading-none" onClick={() => navigate("/")}>
+        tapago
+      </h1>
+      <div className="flex flex-col gap-1 text-right">
+        <span className="font-bold leading-none">{user?.username}</span>
+        <span className="font-light text-xs leading-none">
+          gerente financeiro
+        </span>
+        <span className="font-light text-[0.5rem] leading-none ">
+          bateria {batteryStatus.level}% (
+          {batteryStatus.isPlugged ? "com" : "sem"} carregador)
+        </span>
+      </div>
     </div>
-  </div>
-);
+  );
+};
 
 const Modal = ({
   title,

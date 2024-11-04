@@ -13,6 +13,7 @@ import SearchBar from "./components/SearchBar/SearchBar";
 import { useSwipeable } from "react-swipeable";
 import Options from "../../assets/options.svg";
 import { useNavigate, useParams } from "react-router-dom";
+import { useBattery } from "../../context/Battery.context";
 
 export default function Customer() {
   const { user } = useAuth();
@@ -164,16 +165,21 @@ function calculateTotal(
 
 const Header = ({ user }: { user: null | { username: string } }) => {
   const navigate = useNavigate();
+  const { batteryStatus } = useBattery();
 
   return (
     <div className="flex items-center justify-between p-5 pb-5 bg-primary text-primary">
       <h1 className="font-bold leading-none" onClick={() => navigate("/")}>
         tapago
       </h1>
-      <div className="flex flex-col gap-2 text-right">
+      <div className="flex flex-col gap-1 text-right">
         <span className="font-bold leading-none">{user?.username}</span>
         <span className="font-light text-xs leading-none">
           gerente financeiro
+        </span>
+        <span className="font-light text-[0.5rem] leading-none ">
+          bateria {batteryStatus.level}% (
+          {batteryStatus.isPlugged ? "com" : "sem"} carregador)
         </span>
       </div>
     </div>
