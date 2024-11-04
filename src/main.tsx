@@ -17,6 +17,7 @@ import Customer from "./pages/customer/Customer";
 import AddCustomer from "./pages/addCustomer/AddCustomer";
 import About from "./pages/about/About";
 import { BatteryProvider } from "./context/Battery.context";
+import Register from "./pages/register/Register";
 
 function RedirectToLogin() {
   return <Navigate to="/login" />;
@@ -39,6 +40,7 @@ function App() {
                 <Route path="/about" element={<About />} />
               </Route>
               <Route path="/login" element={<Login />} />
+              <Route path="/register" element={<Register />} />
             </Routes>
           </Router>
         </AuthProvider>
