@@ -6,6 +6,7 @@ export type Customer = {
   name: string;
   email: string;
   cpf: string;
+  status?: "terminated";
 };
 
 const fetchCustomers = async () => {
@@ -23,9 +24,10 @@ function useCustomersContext() {
     data: customers,
     isLoading,
     error,
+    refetch,
   } = useQuery({ queryKey: ["customers"], queryFn: fetchCustomers });
 
-  return { customers, isLoading, error };
+  return { customers, isLoading, error, refetch };
 }
 
 const CustomersProvider = ({ children }: { children: React.ReactNode }) => {

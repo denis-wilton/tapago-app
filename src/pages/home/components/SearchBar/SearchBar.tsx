@@ -39,7 +39,7 @@ const SearchBar: FC<SearchBarProps> = ({
   };
 
   return (
-    <div className="relative flex items-center justify-between p-4 pt-0 bg-primary text-primary z-50">
+    <div className="relative flex items-center justify-between w-full p-4 pt-0 bg-primary text-primary z-50">
       <input
         placeholder={placeholder}
         className="w-full p-2 bg-white/10 text-primary rounded-lg placeholder-white/60 text-xs px-3"

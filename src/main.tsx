@@ -14,6 +14,7 @@ import ProtectedRoute from "./components/ProtectedRoute/ProtectedRoute";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { CustomersProvider } from "./context/Customers.context";
 import Customer from "./pages/customer/Customer";
+import AddCustomer from "./pages/addCustomer/AddCustomer";
 
 function RedirectToLogin() {
   return <Navigate to="/login" />;
@@ -30,7 +31,8 @@ function App() {
             <Route path="/index.html" element={<RedirectToLogin />} />
             <Route path="/" element={<ProtectedRoute />}>
               <Route index element={<Home />} />
-              <Route path="/cliente" element={<Customer />} />
+              <Route path="/cliente/:cpf" element={<Customer />} />
+              <Route path="/add-customer" element={<AddCustomer />} />
             </Route>
             <Route path="/login" element={<Login />} />
           </Routes>
